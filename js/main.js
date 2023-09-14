@@ -26,10 +26,12 @@ function hideBasket() {
 
 // 검색!
 const headerEl = document.querySelector('header')
+const headerMenuEls = [...headerEl.querySelectorAll('ul.menu > li')]
 const searchStarterEl = headerEl.querySelector('.search-starter')
 const searchWrapEl = headerEl.querySelector('.search-wrap')
 const searchCloserEl = searchWrapEl.querySelector('.search-closer')
 const searchShadowEl = searchWrapEl.querySelector('.shadow')
+const searchDelayEls = [...searchWrapEl.querySelectorAll('li')]
 
 searchStarterEl.addEventListener('click', showSearch)
 searchCloserEl.addEventListener('click', hideSearch)
@@ -38,8 +40,21 @@ searchShadowEl.addEventListener('click', hideSearch)
 function showSearch() {
   headerEl.classList.add('searching')
   document.documentElement.classList.add('fixed')  //document.docummentElement == html 태그
+  headerMenuEls.reverse().forEach(function (el, index) {
+    el.style.transitionDelay = index * .4 / headerMenuEls.length + 's'
+  })
+  searchDelayEls.forEach(function (el, index) {
+    el.style.transitionDelay = index * .4 / searchDelayEls.length + 's'
+  })
 }
 function hideSearch() {
   headerEl.classList.remove('searching')
   document.documentElement.classList.remove('fixed')
+  headerMenuEls.reverse().forEach(function (el, index) {
+    el.style.transitionDelay = index * .4 / headerMenuEls.length + 's'
+  })
+  searchDelayEls.reverse().forEach(function (el, index) {
+    el.style.transitionDelay = index * .4 / searchDelayEls.length + 's'
+  })
+  searchDelayEls.reverse() // 위 코드로 인해 배열의 순서가 거꾸로 이기 때문에 다시 순서를 원상태로 복구
 }
