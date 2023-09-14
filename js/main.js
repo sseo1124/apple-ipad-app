@@ -31,6 +31,7 @@ const searchStarterEl = headerEl.querySelector('.search-starter')
 const searchWrapEl = headerEl.querySelector('.search-wrap')
 const searchCloserEl = searchWrapEl.querySelector('.search-closer')
 const searchShadowEl = searchWrapEl.querySelector('.shadow')
+const searchInputEl = searchWrapEl.querySelector('input')
 const searchDelayEls = [...searchWrapEl.querySelectorAll('li')]
 
 searchStarterEl.addEventListener('click', showSearch)
@@ -46,6 +47,9 @@ function showSearch() {
   searchDelayEls.forEach(function (el, index) {
     el.style.transitionDelay = index * .4 / searchDelayEls.length + 's'
   })
+  setTimeout(function () {
+    searchInputEl.focus()
+  }, 600)
 }
 function hideSearch() {
   headerEl.classList.remove('searching')
@@ -57,4 +61,5 @@ function hideSearch() {
     el.style.transitionDelay = index * .4 / searchDelayEls.length + 's'
   })
   searchDelayEls.reverse() // 위 코드로 인해 배열의 순서가 거꾸로 이기 때문에 다시 순서를 원상태로 복구
+  searchInputEl.value = ''
 }
