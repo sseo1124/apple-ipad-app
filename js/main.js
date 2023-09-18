@@ -63,3 +63,17 @@ function hideSearch() {
   searchDelayEls.reverse() // 위 코드로 인해 배열의 순서가 거꾸로 이기 때문에 다시 순서를 원상태로 복구
   searchInputEl.value = ''
 }
+
+// 요소의 가시성 관찰
+const io = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) {
+      return 
+    }
+    entry.target.classList.add('show')
+  })
+})
+const infoEls = document.querySelectorAll('.info')
+infoEls.forEach(function (el) {
+  io.observe(el)
+})
