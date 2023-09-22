@@ -26,7 +26,7 @@ export default [
   {
     thumbnail: './images/compare_ipad_mini.png',
     colors: ['#68696D', '#E2E3E5', '#E8D2CE', '#B9B8D1'],
-    name: 'iPad Pro',
+    name: 'iPad Mini',
     tagline: '메가급 성능.<br />크기만 미니.',
     price: 649000,
     url: '/ipad-mini/'
